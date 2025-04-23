@@ -55,17 +55,33 @@
     <p id="zIndexDisplay"></p>
 
     <script>
+      let hoveredBox = null;
+
+      const boxes = document.querySelectorAll('.box');
+      boxes.forEach(box => {
+        box.addEventListener('mouseover', () => {
+          hoveredBox = box;
+        });
+        box.addEventListener('mouseout', () => {
+          if (hoveredBox === box) {
+            hoveredBox = null;
+          }
+        });
+      });
+
       function changeZIndex() {
         let zIndex = document.getElementById("zIndexInput").value;
 
-        let box = document.querySelector(".box:hover");
-
-        if (box) {
-          box.style.zIndex = zIndex;
+        if (hoveredBox) {
+          hoveredBox.style.zIndex = zIndex;
 
           document.getElementById(
             "zIndexDisplay"
-          ).textContent = `Updated ${box.id} z-index to ${zIndex}`;
+          ).textContent = `Updated ${hoveredBox.id} z-index to ${zIndex}`;
+        } else {
+          document.getElementById(
+            "zIndexDisplay"
+          ).textContent = "Please hover over a box to change its z-index.";
         }
       }
     </script>
