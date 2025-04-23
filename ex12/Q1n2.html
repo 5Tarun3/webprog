@@ -7,206 +7,261 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>23BCE1032</title>
-
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
-
-      form {
-        width: 400px;
-        margin: auto;
-        padding: 10px;
-        border: 1px solid #ccc;
-      }
-
-      label,
-      input,
-      select,
-      textarea {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .error {
-        color: red;
-        font-size: 12px;
-      }
-    </style>
   </head>
 
   <body>
-    <h2 id="timer"></h2>
-
-    <form id="userForm">
-      <label>Name*: <input type="text" name="name" id="name" /></label>
-
-      <span class="error" id="nameError"></span>
-
-      <label>Address*: <textarea name="address" id="address"></textarea></label>
-
-      <span class="error" id="addressError"></span>
-
-      <label
-        >Zip Code*: <input type="text" name="zipcode" id="zipcode"
-      /></label>
-
-      <span class="error" id="zipError"></span>
-
-      <label
-        >Phone Number*: <input type="text" name="phone" id="phone"
-      /></label>
-
-      <span class="error" id="phoneError"></span>
-
-      <label>Email*: <input type="text" name="email" id="email" /></label>
-
-      <span class="error" id="emailError"></span>
-
-      <label
-        >Password*: <input type="password" name="password" id="password"
-      /></label>
-
-      <span class="error" id="passwordError"></span>
-
-      <label>PAN Card*: <input type="text" name="pan" id="pan" /></label>
-
-      <span class="error" id="panError"></span>
-
-      <fieldset>
-        <legend>Gender:</legend>
-
-        <input type="radio" name="gender" value="Male" /> Male
-
-        <input type="radio" name="gender" value="Female" /> Female
-      </fieldset>
-
-      <label
-        >Country*:
-
-        <select name="country">
-          <option value="">Select</option>
-
-          <option value="India">India</option>
-
-          <option value="USA">USA</option>
-        </select>
-      </label>
-
-      <fieldset>
-        <legend>Preferences*:</legend>
-
-        <input type="checkbox" name="preferences" value="Sports" /> Sports
-
-        <input type="checkbox" name="preferences" value="Music" /> Music
-      </fieldset>
-
-      <button type="button" onclick="validateForm()">Submit</button>
-
-      <button type="button" onclick="printForm()">Print</button>
-    </form>
-
     <script>
-      function updateTime() {
-        let now = new Date();
+      document.addEventListener("DOMContentLoaded", function () {
+        let canvas = document.createElement("canvas");
 
-        document.getElementById("timer").textContent = now.toLocaleTimeString();
-      }
+        canvas.width = 800;
 
-      setInterval(updateTime, 1000);
+        canvas.height = 600;
 
-      function printForm() {
-        let gender = document.getElementsByName("gender");
+        document.body.appendChild(canvas);
 
-        let country = document.getElementsByName("country")[0].value;
+        let ctx = canvas.getContext("2d");
 
-        let preferences = document.getElementsByName("preferences");
+        ctx.fillStyle = "blue";
 
-        let selectedGender = "";
+        ctx.beginPath();
 
-        for (let g of gender) {
-          if (g.checked) selectedGender = g.value;
+        ctx.ellipse(400, 450, 200, 80, 0, 0, Math.PI * 2);
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.fillStyle = "brown";
+
+        ctx.beginPath();
+
+        ctx.moveTo(320, 420);
+
+        ctx.quadraticCurveTo(400, 480, 480, 420);
+
+        ctx.lineTo(500, 420);
+
+        ctx.lineTo(300, 420);
+
+        ctx.closePath();
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.fillStyle = "yellow";
+
+        ctx.beginPath();
+
+        ctx.arc(350, 410, 20, 0, Math.PI * 2); // Duck Body
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.arc(370, 395, 10, 0, Math.PI * 2); // Duck Head
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.fillStyle = "orange";
+
+        ctx.beginPath();
+
+        ctx.moveTo(377, 395); // Beak
+
+        ctx.lineTo(390, 390);
+
+        ctx.lineTo(377, 400);
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.fillStyle = "yellow";
+
+        ctx.beginPath();
+
+        ctx.arc(700, 100, 40, 0, Math.PI * 2); // Sun Body
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.strokeStyle = "orange";
+
+        for (let i = 0; i < 12; i++) {
+          // Sun Rays
+
+          let angle = (i * Math.PI) / 6;
+
+          let x1 = 700 + Math.cos(angle) * 50;
+
+          let y1 = 100 + Math.sin(angle) * 50;
+
+          let x2 = 700 + Math.cos(angle) * 70;
+
+          let y2 = 100 + Math.sin(angle) * 70;
+
+          ctx.beginPath();
+
+          ctx.moveTo(x1, y1);
+
+          ctx.lineTo(x2, y2);
+
+          ctx.stroke();
         }
 
-        let selectedPreferences = [];
+        ctx.fillStyle = "red";
 
-        for (let p of preferences) {
-          if (p.checked) selectedPreferences.push(p.value);
+        ctx.fillRect(100, 300, 120, 100);
+
+        ctx.fillStyle = "brown";
+
+        ctx.beginPath();
+
+        ctx.moveTo(100, 300);
+
+        ctx.lineTo(160, 250);
+
+        ctx.lineTo(220, 300);
+
+        ctx.closePath();
+
+        ctx.fill();
+
+        ctx.stroke();
+
+        ctx.strokeStyle = "green";
+
+        ctx.beginPath();
+
+        ctx.moveTo(600, 500);
+
+        ctx.lineTo(600, 420);
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(590, 450);
+
+        ctx.quadraticCurveTo(580, 440, 590, 430);
+
+        ctx.stroke();
+
+        ctx.beginPath();
+
+        ctx.moveTo(610, 450);
+
+        ctx.quadraticCurveTo(620, 440, 610, 430);
+
+        ctx.stroke();
+
+        ctx.fillStyle = "pink";
+
+        for (let i = 0; i < 5; i++) {
+          let angle = (i * Math.PI * 2) / 5;
+
+          let x = 600 + Math.cos(angle) * 15;
+
+          let y = 400 + Math.sin(angle) * 15;
+
+          ctx.beginPath();
+
+          ctx.arc(x, y, 10, 0, Math.PI * 2);
+
+          ctx.fill();
+
+          ctx.stroke();
         }
 
-        console.log("Gender:", selectedGender);
+        ctx.fillStyle = "yellow";
 
-        console.log("Country:", country);
+        ctx.beginPath();
 
-        console.log("Preferences:", selectedPreferences.join(", "));
+        ctx.arc(600, 400, 7, 0, Math.PI * 2);
 
-        alert("Check console for form data");
-      }
+        ctx.fill();
 
-      function validateForm() {
-        let isValid = true;
+        ctx.stroke();
 
-        function showError(id, message) {
-          document.getElementById(id).textContent = message;
+        ctx.fillStyle = "gray";
 
-          isValid = false;
+        for (let i = 0; i < 5; i++) {
+          let x = 250 + i * 30;
+
+          let y = 500;
+
+          ctx.beginPath();
+
+          ctx.arc(x, y, 10, 0, Math.PI * 2);
+
+          ctx.fill();
+
+          ctx.stroke();
         }
 
-        let name = document.getElementById("name").value.trim();
+        document.addEventListener("DOMContentLoaded", function () {
+          let canvas = document.createElement("canvas");
 
-        let address = document.getElementById("address").value.trim();
+          canvas.width = 800;
 
-        let zip = document.getElementById("zipcode").value.trim();
+          canvas.height = 600;
 
-        let phone = document.getElementById("phone").value.trim();
+          document.body.appendChild(canvas);
 
-        let email = document.getElementById("email").value.trim();
+          let ctx = canvas.getContext("2d");
 
-        let password = document.getElementById("password").value.trim();
+          let boatX = 320;
 
-        let pan = document.getElementById("pan").value.trim();
+          let direction = 1;
 
-        if (name === " ") showError("nameError", "Name is required ");
-        else if (name.length > 15)
-          showError("nameError", "Max 15 characters allowed ");
-        else document.getElementById("nameError").textContent = " ";
+          function drawScene() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Draw Pond
 
-        if (address === " ") showError("addressError", "Address is required ");
-        else document.getElementById("addressError").textContent = " ";
+            ctx.fillStyle = "blue";
 
-        if (!/^[0-9]{6}$/.test(zip))
-          showError("zipError", "Zip must be 6 digits ");
-        else document.getElementById("zipError").textContent = " ";
+            ctx.beginPath();
 
-        if (!/^[0-9]{10}$/.test(phone))
-          showError("phoneError", "Phone must be 10 digits ");
-        else document.getElementById("phoneError").textContent = " ";
+            ctx.ellipse(400, 450, 200, 80, 0, 0, Math.PI * 2);
 
-        let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            ctx.fill();
 
-        if (!emailPattern.test(email))
-          showError("emailError", "Invalid email format ");
-        else document.getElementById("emailError").textContent = " ";
+            ctx.stroke(); // Draw Boat (Quadrilateral with curved edges)
 
-        let passwordPattern =
-          /^(?=.*\d)(?=.*[A-Za-z])(?=.*[?!*%$@])[A-Za-z\d?!*%$@]{8,15}$/;
+            ctx.fillStyle = "brown";
 
-        if (!passwordPattern.test(password))
-          showError(
-            "passwordError",
-            "Password must have 8-15 chars, a number & a special char "
-          );
-        else document.getElementById("passwordError").textContent = " ";
+            ctx.beginPath();
 
-        let panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+            ctx.moveTo(boatX, 420);
 
-        if (!panPattern.test(pan))
-          showError("panError", "Invalid PAN format (e.g., ABCDE1234F) ");
-        else document.getElementById("panError").textContent = " ";
+            ctx.quadraticCurveTo(boatX + 80, 480, boatX + 160, 420);
 
-        if (isValid) alert("Form submitted successfully! ");
-      }
+            ctx.lineTo(boatX + 180, 420);
+
+            ctx.lineTo(boatX - 20, 420);
+
+            ctx.closePath();
+
+            ctx.fill();
+
+            ctx.stroke();
+
+            boatX += direction;
+
+            if (boatX > 400 || boatX < 320) direction *= -1;
+
+            requestAnimationFrame(drawScene);
+          }
+
+          drawScene();
+        });
+      });
     </script>
   </body>
 </html>
