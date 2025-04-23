@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23BCE1032</title>
+  </head>
+  <body>
+    <label for="seatNumber">Enter Seat Number (1-10):</label>
+    <input type="number" id="seatNumber" min="1" max="10" />
+    <button onclick="checkSeat()">Check Availability</button>
+    <p id="result"></p>
+    <script>
+      let seats = new Array(10).fill(false); // False means seat is
+      available
+      function checkSeat() {
+      let seatNumber = document.getElementById("seatNumber").value;
+      if (seatNumber < 1 || seatNumber > 10) {
+      document.getElementById("result").innerText = "Invalid seat number!";
+      return;
+      }
+      if (seats[seatNumber - 1]) {
+      document.getElementById("result").innerText = "Seat already booked!";
+      } else {
+      seats[seatNumber - 1] = true;
+      document.getElementById("result").innerText = "Seat booked successfully!";
+      }
+      }
+    </script>
+  </body>
+</html>

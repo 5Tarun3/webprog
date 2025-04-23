@@ -1,0 +1,69 @@
+table{ 
+
+    background-color: aquamarine;  
+    
+     
+    
+    } 
+    
+    #clear{ 
+    
+    background-color:deeppink; 
+    
+    box-shadow: 0.5px 1.2px darkcyan ; 
+    
+    border-radius: 5px; 
+    
+    } 
+    
+    #clear:hover{ 
+    
+    background-color:red; 
+    
+    } 
+    
+    #space{ 
+    
+    background-color: darkcyan; 
+    
+    border-radius: 5px; 
+    
+    } 
+    
+    .num{ 
+    
+    background-color: white; 
+    
+    box-shadow: 0.5px 1.2px darkcyan; 
+    
+    border-radius: 5px; 
+    
+    } 
+    
+    .num:hover{ 
+    
+    background-color: blueviolet; 
+    
+    } 
+    
+    .op{ 
+    
+    background-color: pink; 
+    
+    box-shadow: 0.5px 1.2px darkcyan; 
+    
+    border-radius: 5px; 
+    
+    } 
+    
+    .op:hover{ 
+    
+    background-color: lime; 
+    
+    } 
+    
+    .s{ 
+    
+    box-shadow: 3px; 
+    
+    } 

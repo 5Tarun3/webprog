@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let canvas = document.createElement("canvas");
+
+        canvas.width = 400;
+
+        canvas.height = 400;
+
+        document.body.appendChild(canvas);
+
+        let ctx = canvas.getContext("2d");
+
+        let centerX = canvas.width / 2;
+
+        let centerY = canvas.height / 2;
+
+        function drawClock() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // Draw Clock Face
+
+          ctx.fillStyle = "lightgray";
+
+          ctx.beginPath();
+
+          ctx.arc(centerX, centerY, 150, 0, Math.PI * 2);
+
+          ctx.fill();
+
+          ctx.stroke();
+
+          // Draw Hour Markings
+
+          ctx.fillStyle = "black";
+
+          for (let i = 1; i <= 12; i++) {
+            let angle = (i * Math.PI) / 6;
+
+            let x = centerX + Math.cos(angle) * 130;
+
+            let y = centerY + Math.sin(angle) * 130;
+
+            ctx.fillText(i, x - 5, y + 5);
+          }
+
+          let now = new Date();
+
+          let sec = now.getSeconds();
+
+          let min = now.getMinutes();
+
+          let hr = now.getHours() % 12;
+
+          function drawHand(length, width, angle, color) {
+            ctx.strokeStyle = color;
+
+            ctx.lineWidth = width;
+
+            ctx.beginPath();
+
+            ctx.moveTo(centerX, centerY);
+
+            ctx.lineTo(
+              centerX + Math.cos(angle) * length,
+              centerY + Math.sin(angle) * length
+            );
+
+            ctx.stroke();
+          }
+
+          let secAngle = (Math.PI / 30) * sec - Math.PI / 2;
+
+          let minAngle =
+            (Math.PI / 30) * min + (Math.PI / 1800) * sec - Math.PI / 2;
+
+          let hrAngle =
+            (Math.PI / 6) * hr + (Math.PI / 360) * min - Math.PI / 2;
+
+          drawHand(100, 2, secAngle, "red");
+
+          drawHand(80, 4, minAngle, "black");
+
+          drawHand(50, 6, hrAngle, "black");
+
+          ctx.fillStyle = "black";
+
+          ctx.beginPath();
+
+          ctx.arc(centerX, centerY, 5, 0, Math.PI * 2);
+
+          ctx.fill();
+
+          requestAnimationFrame(drawClock);
+        }
+
+        drawClock();
+      });
+    </script>
+  </body>
+</html>

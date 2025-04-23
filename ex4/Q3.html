@@ -1,0 +1,31 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+
+<meta charset="UTF-8"> 
+
+<meta name="viewport" content="width=device-width, initialscale=1.0"> 
+
+<title>23BCE1032</title> 
+
+</head> 
+
+<body> 
+
+<form oninput ="sum.value=(parseInt(a.value)+parseInt(b.value)+parseInt(c.value))/3"> 
+
+<label for="Design"><h3>Design:</h3> </label>1<input type="range" name="Design" id="a" min = "1"max="5">5<br> 
+
+<label for="Reliability"><h3>Reliability:</h3> </label>1<input type="range" name="Reliability" id="b" min="1" max="5">5<br> 
+
+<label for="Performance"><h3>Performance:</h3></label>1<input type="range" name="Performance" id="c" min="1" max="5">5<br> 
+
+<h3> Overall Rating:<output id = "sum" for="a b c" value ="0"> </h3> 
+
+</form> 
+
+</body> 
+
+</html> 

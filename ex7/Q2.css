@@ -1,0 +1,195 @@
+body { 
+
+    margin: 0; 
+    
+    font-family: Arial, sans-serif; 
+    
+    background-image: url('background.jpg');  
+    
+    background-position: center; 
+    
+    background-size: cover; 
+    
+    background-repeat: no-repeat; 
+    
+    } 
+    
+     
+    
+    header { 
+    
+    text-align: center; 
+    
+    padding: 20px; 
+    
+    } 
+    
+     
+    
+    .rainbow { 
+    
+    font-size: 3em; 
+    
+    font-weight: bold; 
+    
+    text-align: center; 
+    
+    background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet); 
+    
+    background-size: 400%;  
+    
+    background-clip: text; 
+    
+    color: transparent;  
+    
+    animation: rainbowMove 5s infinite linear; 
+    
+    } 
+    
+     
+    
+    @keyframes rainbowMove { 
+    
+    0% { 
+    
+    background-position: 0% 50%; 
+    
+    } 
+    
+    100% { 
+    
+    background-position: 100% 50%; 
+    
+    } 
+    
+    } 
+    
+     
+    
+    .container { 
+    
+    max-width: 1200px; 
+    
+    margin: 0 auto; 
+    
+    } 
+    
+     
+    
+    .cards { 
+    
+    display: grid; 
+    
+    grid-template-columns: repeat(3, 1fr); 
+    
+    gap: 20px; 
+    
+    padding: 20px; 
+    
+    } 
+    
+     
+    
+    .card { 
+    
+    background: #f9f9f9; 
+    
+    border-radius: 10px; 
+    
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    
+    overflow: hidden; 
+    
+    text-align: center; 
+    
+    padding: 15px; 
+    
+    } 
+    
+     
+    
+    .card img { 
+    
+    width: 100%; 
+    
+    height: auto; 
+    
+    border-bottom: 2px solid #ddd; 
+    
+    } 
+    
+     
+    
+    .card h2 { 
+    
+    font-size: 1.5em; 
+    
+    margin: 10px 0; 
+    
+    } 
+    
+     
+    
+    .card p { 
+    
+    font-size: 1em; 
+    
+    line-height: 30pt; 
+    
+    column-count: 2; 
+    
+    } 
+    
+     
+    
+    .play-area { 
+    
+    text-align: center; 
+    
+    margin-top: 40px; 
+    
+    } 
+    
+     
+    
+    .ball { 
+    
+    animation: bounce 1.5s infinite ease-in-out, move 2s infinite alternate; 
+    
+    } 
+    
+     
+    
+    @keyframes bounce { 
+    
+    0%, 100% { 
+    
+    transform: translateY(0); 
+    
+    } 
+    
+    50% { 
+    
+    transform: translateY(-50px);  
+    
+    } 
+    
+    } 
+    
+     
+    
+    @keyframes move { 
+    
+    from { 
+    
+    transform: translateX(0); 
+    
+    } 
+    
+    to { 
+    
+    transform: translateX(50px);  
+    
+    } 
+    
+    } 

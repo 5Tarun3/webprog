@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let timerDisplay = document.createElement("h2");
+
+        timerDisplay.textContent = "00:00:00";
+
+        document.body.appendChild(timerDisplay);
+
+        let startButton = document.createElement("button");
+
+        startButton.textContent = "Start";
+
+        document.body.appendChild(startButton);
+
+        let stopButton = document.createElement("button");
+
+        stopButton.textContent = "Stop";
+
+        document.body.appendChild(stopButton);
+
+        let resetButton = document.createElement("button");
+
+        resetButton.textContent = "Reset";
+
+        document.body.appendChild(resetButton);
+
+        let seconds = 0,
+          minutes = 0,
+          hours = 0,
+          timer;
+
+        function updateDisplay() {
+          timerDisplay.textContent = `${String(hours).padStart(
+            2,
+
+            "0"
+          )}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+            2,
+
+            "0"
+          )}`;
+        }
+
+        function startTimer() {
+          if (!timer) {
+            timer = setInterval(() => {
+              seconds++;
+
+              if (seconds === 60) {
+                seconds = 0;
+
+                minutes++;
+              }
+
+              if (minutes === 60) {
+                minutes = 0;
+
+                hours++;
+              }
+
+              updateDisplay();
+            }, 1000);
+          }
+        }
+
+        function stopTimer() {
+          clearInterval(timer);
+
+          timer = null;
+        }
+
+        function resetTimer() {
+          stopTimer();
+
+          seconds = minutes = hours = 0;
+
+          updateDisplay();
+        }
+
+        startButton.addEventListener("click", startTimer);
+
+        stopButton.addEventListener("click", stopTimer);
+
+        resetButton.addEventListener("click", resetTimer);
+
+        let linebreak = document.createElement("br");
+
+        document.body.appendChild(linebreak);
+
+        let dobInput = document.createElement("input");
+
+        dobInput.type = "date";
+
+        document.body.appendChild(dobInput);
+
+        let ageDisplay = document.createElement("p");
+
+        document.body.appendChild(ageDisplay);
+
+        dobInput.addEventListener("mouseover", function () {
+          let dob = new Date(dobInput.value);
+
+          let today = new Date();
+
+          let age = today.getFullYear() - dob.getFullYear();
+
+          let monthDiff = today.getMonth() - dob.getMonth();
+
+          if (
+            monthDiff < 0 ||
+            (monthDiff === 0 && today.getDate() < dob.getDate())
+          ) {
+            age--;
+          }
+
+          ageDisplay.textContent = `Your age: ${age} years`;
+        });
+
+        let textArea = document.createElement("textarea");
+
+        document.body.appendChild(textArea);
+
+        let charCount = document.createElement("p");
+
+        charCount.textContent = "Characters: 0";
+
+        document.body.appendChild(charCount);
+
+        textArea.addEventListener("input", function () {
+          charCount.textContent = `Characters: ${textArea.value.length}`;
+        });
+      });
+    </script>
+  </body>
+</html>

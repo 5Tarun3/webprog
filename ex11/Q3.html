@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      form {
+        width: 400px;
+        margin: auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+
+      label,
+      input,
+      select,
+      textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2 id="timer"></h2>
+
+    <form id="userForm">
+      <label>Name*: <input type="text" name="name" id="name" /></label>
+
+      <span class="error" id="nameError"></span>
+
+      <label>Address*: <textarea name="address" id="address"></textarea></label>
+
+      <span class="error" id="addressError"></span>
+
+      <label
+        >Zip Code*: <input type="text" name="zipcode" id="zipcode"
+      /></label>
+
+      <span class="error" id="zipError"></span>
+
+      <label
+        >Phone Number*: <input type="text" name="phone" id="phone"
+      /></label>
+
+      <span class="error" id="phoneError"></span>
+
+      <label>Email*: <input type="text" name="email" id="email" /></label>
+
+      <span class="error" id="emailError"></span>
+
+      <label
+        >Password*: <input type="password" name="password" id="password"
+      /></label>
+
+      <span class="error" id="passwordError"></span>
+
+      <label>PAN Card*: <input type="text" name="pan" id="pan" /></label>
+
+      <span class="error" id="panError"></span>
+
+      <fieldset>
+        <legend>Gender:</legend>
+
+        <input type="radio" name="gender" value="Male" /> Male
+
+        <input type="radio" name="gender" value="Female" /> Female
+      </fieldset>
+
+      <label
+        >Country*:
+
+        <select name="country">
+          <option value="">Select</option>
+
+          <option value="India">India</option>
+
+          <option value="USA">USA</option>
+        </select>
+      </label>
+
+      <fieldset>
+        <legend>Preferences*:</legend>
+
+        <input type="checkbox" name="preferences" value="Sports" /> Sports
+
+        <input type="checkbox" name="preferences" value="Music" /> Music
+      </fieldset>
+
+      <button type="button" onclick="validateForm()">Submit</button>
+
+      <button type="button" onclick="printForm()">Print</button>
+    </form>
+
+    <script>
+      function updateTime() {
+        let now = new Date();
+
+        document.getElementById("timer").textContent = now.toLocaleTimeString();
+      }
+
+      setInterval(updateTime, 1000);
+
+      function printForm() {
+        let gender = document.getElementsByName("gender");
+
+        let country = document.getElementsByName("country")[0].value;
+
+        let preferences = document.getElementsByName("preferences");
+
+        let selectedGender = "";
+
+        for (let g of gender) {
+          if (g.checked) selectedGender = g.value;
+        }
+
+        let selectedPreferences = [];
+
+        for (let p of preferences) {
+          if (p.checked) selectedPreferences.push(p.value);
+        }
+
+        console.log("Gender:", selectedGender);
+
+        console.log("Country:", country);
+
+        console.log("Preferences:", selectedPreferences.join(", "));
+
+        alert("Check console for form data");
+      }
+
+      function validateForm() {
+        let isValid = true;
+
+        function showError(id, message) {
+          document.getElementById(id).textContent = message;
+
+          isValid = false;
+        }
+
+        let name = document.getElementById("name").value.trim();
+
+        let address = document.getElementById("address").value.trim();
+
+        let zip = document.getElementById("zipcode").value.trim();
+
+        let phone = document.getElementById("phone").value.trim();
+
+        let email = document.getElementById("email").value.trim();
+
+        let password = document.getElementById("password").value.trim();
+
+        let pan = document.getElementById("pan").value.trim();
+
+        if (name === " ") showError("nameError", "Name is required ");
+        else if (name.length > 15)
+          showError("nameError", "Max 15 characters allowed ");
+        else document.getElementById("nameError").textContent = " ";
+
+        if (address === " ") showError("addressError", "Address is required ");
+        else document.getElementById("addressError").textContent = " ";
+
+        if (!/^[0-9]{6}$/.test(zip))
+          showError("zipError", "Zip must be 6 digits ");
+        else document.getElementById("zipError").textContent = " ";
+
+        if (!/^[0-9]{10}$/.test(phone))
+          showError("phoneError", "Phone must be 10 digits ");
+        else document.getElementById("phoneError").textContent = " ";
+
+        let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+        if (!emailPattern.test(email))
+          showError("emailError", "Invalid email format ");
+        else document.getElementById("emailError").textContent = " ";
+
+        let passwordPattern =
+          /^(?=.*\d)(?=.*[A-Za-z])(?=.*[?!*%$@])[A-Za-z\d?!*%$@]{8,15}$/;
+
+        if (!passwordPattern.test(password))
+          showError(
+            "passwordError",
+            "Password must have 8-15 chars, a number & a special char "
+          );
+        else document.getElementById("passwordError").textContent = " ";
+
+        let panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+
+        if (!panPattern.test(pan))
+          showError("panError", "Invalid PAN format (e.g., ABCDE1234F) ");
+        else document.getElementById("panError").textContent = " ";
+
+        if (isValid) alert("Form submitted successfully! ");
+      }
+    </script>
+  </body>
+</html>

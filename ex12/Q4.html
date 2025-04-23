@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+  </head>
+
+  <body>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <div id="barChart"></div>
+
+    <div id="lineChart"></div>
+
+    <div id="pieChart"></div>
+
+    <div id="donutChart"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let barData = [
+          {
+            x: ["A", "B", "C"],
+            y: [10, 20, 30],
+            type: "bar",
+            marker: { color: "blue" },
+          },
+        ];
+
+        let barLayout = {
+          title: "Bar Chart",
+          xaxis: { title: "Categories" },
+          yaxis: { title: "Values" },
+        };
+
+        Plotly.newPlot("barChart", barData, barLayout);
+
+        let lineData = [
+          {
+            x: [1, 2, 3, 4, 5],
+            y: [10, 15, 13, 17, 19],
+            type: "scatter",
+            mode: "lines+markers",
+            marker: { color: "red" },
+          },
+        ];
+
+        let lineLayout = {
+          title: "Line Chart",
+          xaxis: { title: "X-Axis" },
+          yaxis: { title: "Y-Axis" },
+        };
+
+        Plotly.newPlot("lineChart", lineData, lineLayout);
+
+        let pieData = [
+          { labels: ["A", "B", "C"], values: [10, 20, 30], type: "pie" },
+        ];
+
+        let pieLayout = { title: "Pie Chart" };
+
+        Plotly.newPlot("pieChart", pieData, pieLayout);
+
+        let donutData = [
+          {
+            labels: ["A", "B", "C"],
+            values: [10, 20, 30],
+            type: "pie",
+            hole: 0.4,
+          },
+        ];
+
+        let donutLayout = { title: "Donut Chart" };
+
+        Plotly.newPlot("donutChart", donutData, donutLayout);
+      });
+    </script>
+  </body>
+</html>

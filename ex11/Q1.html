@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+  </head>
+
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        let table = document.createElement("table");
+
+        table.border = "1";
+
+        for (let i = 0; i < 3; i++) {
+          let row = table.insertRow();
+
+          for (let j = 0; j < 3; j++) {
+            let cell = row.insertCell();
+
+            cell.textContent = `Row ${i + 1} Col ${j + 1}`;
+          }
+        }
+
+        document.body.appendChild(table);
+
+        let textbox = document.createElement("input");
+
+        textbox.type = "text";
+
+        textbox.addEventListener("change", function () {
+          alert("Hello! You changed the text.");
+        });
+
+        document.body.appendChild(textbox);
+
+        textbox.style.backgroundColor = "green";
+
+        textbox.addEventListener("focus", function () {
+          textbox.style.backgroundColor = "yellow";
+        });
+
+        textbox.addEventListener("blur", function () {
+          textbox.style.backgroundColor = "green";
+        });
+
+        let addButton = document.createElement("button");
+
+        addButton.textContent = "Add Item";
+
+        addButton.style.backgroundColor = "red";
+
+        addButton.addEventListener("mouseover", function () {
+          addButton.style.backgroundColor = "green";
+        });
+
+        addButton.addEventListener("mouseout", function () {
+          addButton.style.backgroundColor = "red";
+        });
+
+        document.body.appendChild(addButton);
+
+        let ul = document.createElement("ul");
+
+        document.body.appendChild(ul);
+
+        addButton.addEventListener("dblclick", function () {
+          if (textbox.value.trim() !== "") {
+            let li = document.createElement("li");
+
+            li.textContent = textbox.value;
+
+            ul.appendChild(li);
+
+            textbox.value = "";
+          }
+        });
+
+        let keyInput = document.createElement("input");
+
+        keyInput.type = "text";
+
+        document.body.appendChild(keyInput);
+
+        let keyCountDisplay = document.createElement("input");
+
+        keyCountDisplay.type = "text";
+
+        keyCountDisplay.readOnly = true;
+
+        keyCountDisplay.value = "0";
+
+        document.body.appendChild(keyCountDisplay);
+
+        let keyPressCount = 0;
+
+        keyInput.addEventListener("keypress", function () {
+          keyPressCount++;
+
+          keyCountDisplay.value = keyPressCount;
+        });
+      });
+    </script>
+  </body>
+</html>

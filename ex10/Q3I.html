@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23bce1032</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+
+        background-color: #d1d5b6;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #7f8c6d;
+
+        padding: 20px;
+
+        border-radius: 10px;
+
+        width: 350px;
+
+        color: white;
+
+        text-align: center;
+      }
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      .order-summary {
+        text-align: left;
+
+        margin-top: 10px;
+      }
+
+      .total {
+        font-size: 18px;
+
+        font-weight: bold;
+      }
+
+      button {
+        width: 100%;
+
+        padding: 10px;
+
+        background-color: #b48b5e;
+
+        border: none;
+
+        color: white;
+
+        font-size: 16px;
+
+        cursor: pointer;
+
+        border-radius: 5px;
+
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #9c704a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Order Receipt</h2>
+
+      <p id="customerInfo"></p>
+
+      <div class="order-summary">
+        <p id="orderDetails"></p>
+
+        <p class="total" id="totalPrice"></p>
+      </div>
+
+      <button onclick="window.history.back()">Back to Order</button>
+    </div>
+
+    <script>
+      function getQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+
+        return {
+          name: params.get("name"),
+
+          phone: params.get("phone"),
+
+          email: params.get("email"),
+
+          appleQty: parseInt(params.get("appleQty")) || 0,
+
+          bananaQty: parseInt(params.get("bananaQty")) || 0,
+
+          avocadoQty: parseInt(params.get("avocadoQty")) || 0,
+        };
+      }
+
+      function displayReceipt() {
+        const data = getQueryParams();
+
+        document.getElementById(
+          "customerInfo"
+        ).innerHTML = `<strong>Name:</strong> ${data.name} <br> 
+
+<strong>Phone:</strong> ${data.phone} <br> 
+
+<strong>Email:</strong> ${data.email}`;
+
+        let orderDetails = "";
+
+        let totalPrice = 0;
+
+        if (data.appleQty > 0) {
+          orderDetails += `Apple: ${data.appleQty} kg ($10/kg) = $${
+            data.appleQty * 10
+          } <br>`;
+
+          totalPrice += data.appleQty * 10;
+        }
+
+        if (data.bananaQty > 0) {
+          orderDetails += `Banana: ${data.bananaQty} kg ($5/kg) = $${
+            data.bananaQty * 5
+          } <br>`;
+
+          totalPrice += data.bananaQty * 5;
+        }
+
+        if (data.avocadoQty > 0) {
+          orderDetails += `Avocado: ${data.avocadoQty} kg ($7/kg) = $${
+            data.avocadoQty * 7
+          } <br>`;
+
+          totalPrice += data.avocadoQty * 7;
+        }
+
+        if (!orderDetails) {
+          orderDetails = "No products ordered.";
+        }
+
+        document.getElementById("orderDetails").innerHTML = orderDetails;
+
+        document.getElementById(
+          "totalPrice"
+        ).textContent = `Total Price: $${totalPrice}`;
+      }
+
+      displayReceipt();
+    </script>
+  </body>
+</html>

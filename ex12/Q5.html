@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+  </head>
+
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      text-align: center;
+      font-size: 16px;
+      padding: 30px;
+    }
+
+    .red {
+      background-color: red;
+      top: 50px;
+      left: 50px;
+      z-index: 1;
+    }
+
+    .green {
+      background-color: green;
+      top: 100px;
+      left: 100px;
+      z-index: 2;
+    }
+
+    .blue {
+      background-color: blue;
+      top: 150px;
+      left: 150px;
+      z-index: 3;
+    }
+  </style>
+
+  <body>
+    <div class="box red" id="box1">Box 1</div>
+
+    <div class="box green" id="box2">Box 2</div>
+
+    <div class="box blue" id="box3">Box 3</div>
+
+    <input type="number" id="zIndexInput" placeholder="Enter z-index" />
+
+    <button onclick="changeZIndex()">Set z-index</button>
+
+    <p id="zIndexDisplay"></p>
+
+    <script>
+      function changeZIndex() {
+        let zIndex = document.getElementById("zIndexInput").value;
+
+        let box = document.querySelector(".box:hover");
+
+        if (box) {
+          box.style.zIndex = zIndex;
+
+          document.getElementById(
+            "zIndexDisplay"
+          ).textContent = `Updated ${box.id} z-index to ${zIndex}`;
+        }
+      }
+    </script>
+  </body>
+</html>

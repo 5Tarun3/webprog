@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>23BCE1032</title>
+<style>
+body { text-align: center; font-family: Arial, sans-serif; }
+input, button { padding: 10px; font-size: 16px; }
+</style>
+</head>
+<body>
+<h2>Age Verification</h2>
+<input type="number" id="age" placeholder="Enter your age">
+<button onclick="checkAge()">Check</button>
+<p id="message"></p>
+<script>
+function checkAge() {
+let age = document.getElementById("age").value;
+document.getElementById("message").textContent = age >= 18 ? "You are eligible to drive." : "You are not eligible to drive.";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>23BCE1032</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Labour Cost Calculator</h2>
+    <input type="number" id="hoursWorked" placeholder="Hours Worked" />
+    <input type="number" id="materialCost" placeholder="Cost of Materials" />
+    <button onclick="calculateCost()">Calculate</button>
+    <p>Labour Cost: Rs. <span id="labourCost"></span></p>
+    <p>Total Charge: Rs. <span id="totalCharge"></span></p>
+    <script>
+      function calculateCost() {
+        let hoursWorked = parseFloat(
+          document.getElementById("hoursWorked").value
+        );
+        let materialCost = parseFloat(
+          document.getElementById("materialCost").value
+        );
+        const ratePerHour = 45;
+        let labourCost = ratePerHour * hoursWorked;
+        let totalCharge = labourCost + materialCost;
+        document.getElementById("labourCost").textContent = labourCost;
+        document.getElementById("totalCharge").textContent = totalCharge;
+      }
+    </script>
+  </body>
+</html>

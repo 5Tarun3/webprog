@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+
+        background-color: #d1d5b6;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #7f8c6d;
+
+        padding: 20px;
+
+        border-radius: 10px;
+
+        width: 400px;
+
+        color: white;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: block;
+
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"] {
+        width: 100%;
+
+        padding: 5px;
+
+        border: none;
+
+        border-radius: 5px;
+      }
+
+      .product {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        margin-bottom: 10px;
+      }
+
+      .product img {
+        width: 40px;
+
+        height: 40px;
+
+        border-radius: 50%;
+      }
+
+      .product label {
+        flex: 1;
+
+        margin-left: 10px;
+
+        font-size: 16px;
+      }
+
+      .product input[type="number"] {
+        width: 50px;
+
+        margin-left: 5px;
+      }
+
+      .product input[type="checkbox"] {
+        margin-right: 10px;
+      }
+
+      button {
+        width: 100%;
+
+        padding: 10px;
+
+        background-color: #b48b5e;
+
+        border: none;
+
+        color: white;
+
+        font-size: 16px;
+
+        cursor: pointer;
+
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: #9c704a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Grocery Order Form</h2>
+
+      <form id="orderForm">
+        <div class="form-group">
+          <label>Customer Name</label>
+
+          <input type="text" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+
+          <input type="text" id="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+
+          <input type="email" id="email" required />
+        </div>
+
+        <h3>Products</h3>
+
+        <div class="product">
+          <input type="checkbox" id="appleCheck" />
+
+          <img src="apple.png" alt="Apple" />
+
+          <label for="appleCheck">Apple ($10/kg)</label>
+
+          <input type="number" id="appleQty" min="0" value="0" disabled />
+        </div>
+
+        <div class="product">
+          <input type="checkbox" id="bananaCheck" />
+
+          <img src="banana.png" alt="Banana" />
+
+          <label for="bananaCheck">Banana ($5/kg)</label>
+
+          <input type="number" id="bananaQty" min="0" value="0" disabled />
+        </div>
+
+        <div class="product">
+          <input type="checkbox" id="avocadoCheck" />
+
+          <img src="avocado.png" alt="Avocado" />
+
+          <label for="avocadoCheck">Avocado ($7/kg)</label>
+
+          <input type="number" id="avocadoQty" min="0" value="0" disabled />
+        </div>
+
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+
+    <script>
+      function toggleQuantity(checkboxId, quantityId) {
+        document
+          .getElementById(checkboxId)
+          .addEventListener("change", function () {
+            document.getElementById(quantityId).disabled = !this.checked;
+
+            if (!this.checked) {
+              document.getElementById(quantityId).value = 0;
+            }
+          });
+      }
+
+      toggleQuantity("appleCheck", "appleQty");
+
+      toggleQuantity("bananaCheck", "bananaQty");
+
+      toggleQuantity("avocadoCheck", "avocadoQty");
+
+      document
+        .getElementById("orderForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const name = document.getElementById("name").value;
+
+          const phone = document.getElementById("phone").value;
+
+          const email = document.getElementById("email").value;
+
+          const appleQty = document.getElementById("appleCheck").checked
+            ? document.getElementById("appleQty").value
+            : 0;
+
+          const bananaQty = document.getElementById("bananaCheck").checked
+            ? document.getElementById("bananaQty").value
+            : 0;
+
+          const avocadoQty = document.getElementById("avocadoCheck").checked
+            ? document.getElementById("avocadoQty").value
+            : 0;
+
+          const queryString = `Q3I.html?name=${name}&phone=${phone}&email=${email}&appleQty=${appleQty}&bananaQty=${bananaQty}&avocadoQty=${avocadoQty}`;
+
+          window.location.href = queryString;
+        });
+    </script>
+  </body>
+</html>

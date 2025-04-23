@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>23BCE1032</title>
+
+    <style>
+      table {
+        margin: 10px 0;
+
+        border-collapse: collapse;
+
+        width: 50%;
+      }
+
+      table,
+      th,
+      td {
+        border: 1px solid black;
+
+        padding: 10px;
+
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+
+    <script>
+      function init_table() {
+        let existingTable = document.getElementById("myTable");
+
+        let table = document.createElement("table");
+
+        table.id = "myTable";
+
+        let headerRow = table.insertRow();
+
+        headerRow.innerHTML = "<th>P-Id</th><th>Name</th><th>Age</th>";
+
+        for (let i = 0; i < 8; i++) {
+          let drow = table.insertRow(i + 1);
+
+          let cell1 = drow.insertCell(0);
+
+          let cell2 = drow.insertCell(1);
+
+          let cell3 = drow.insertCell(2);
+
+          cell1.innerHTML = `${i}`;
+
+          switch (i) {
+            case 0:
+              cell2.textContent = "Alen";
+
+              cell3.textContent = "39";
+
+              break;
+
+            case 1:
+              cell2.textContent = "Deena";
+
+              cell3.textContent = "47";
+
+              break;
+
+            case 2:
+              cell2.textContent = "Diana";
+
+              cell3.textContent = "21";
+
+              break;
+
+            case 3:
+              cell2.textContent = "Jack";
+
+              cell3.textContent = "54";
+
+              break;
+
+            case 4:
+              cell2.textContent = "Jain";
+
+              cell3.textContent = "23";
+
+              break;
+
+            case 5:
+              cell2.textContent = "Kelvin";
+
+              cell3.textContent = "61";
+
+              break;
+
+            case 6:
+              cell2.textContent = "Louis";
+
+              cell3.textContent = "69";
+
+              break;
+
+            case 7:
+              cell2.textContent = "Rex";
+
+              cell3.textContent = "49";
+
+              break;
+          }
+        }
+
+        document.body.appendChild(table);
+      }
+
+      function sort_desc() {
+        let table = document.getElementById("myTable");
+
+        let rows = Array.from(table.rows).slice(1);
+
+        rows.sort(
+          (a, b) =>
+            parseInt(b.cells[2].textContent) - parseInt(a.cells[2].textContent)
+        );
+
+        rows.forEach((row) => table.appendChild(row));
+      }
+
+      function search() {
+        let searchValue = document.getElementById("searchInput").value.trim();
+
+        let table = document.getElementById("myTable");
+
+        let rows = table.rows;
+
+        let found = false;
+
+        for (let i = 1; i < rows.length; i++) {
+          let pid = rows[i].cells[0].textContent;
+
+          if (pid === searchValue) {
+            alert(
+              "Patient found: " +
+                rows[i].cells[1].textContent +
+                ", Age: " +
+                rows[i].cells[2].textContent
+            );
+
+            found = true;
+
+            break;
+          }
+        }
+
+        if (!found) {
+          alert("Patient not found");
+        }
+      }
+
+      function filterpats() {
+        let table = document.getElementById("myTable");
+
+        let rows = Array.from(table.rows).slice(1);
+
+        let ranges = {
+          "20-30": [],
+
+          "30-40": [],
+
+          "40-50": [],
+
+          "50+": [],
+        };
+
+        rows.forEach((row) => {
+          let age = parseInt(row.cells[2].textContent);
+
+          if (age >= 20 && age <= 30) {
+            ranges["20-30"].push(row);
+          } else if (age > 30 && age <= 40) {
+            ranges["30-40"].push(row);
+          } else if (age > 40 && age <= 50) {
+            ranges["40-50"].push(row);
+          } else {
+            ranges["50+"].push(row);
+          }
+        });
+
+        document
+          .querySelectorAll(".filter-table")
+          .forEach((tbl) => tbl.remove());
+
+        Object.keys(ranges).forEach((range) => {
+          if (ranges[range].length > 0) {
+            createFilterTable(range, ranges[range]);
+          }
+        });
+      }
+
+      function createFilterTable(range, rows) {
+        let table = document.createElement("table");
+
+        table.className = "filter-table";
+
+        let caption = document.createElement("caption");
+
+        caption.textContent = `Patients Aged ${range}`;
+
+        table.appendChild(caption);
+
+        let headerRow = table.insertRow();
+
+        headerRow.innerHTML = "<th>P-Id</th><th>Name</th><th>Age</th>";
+
+        rows.forEach((row) => {
+          let newRow = table.insertRow();
+
+          newRow.innerHTML = row.innerHTML;
+        });
+
+        document.body.appendChild(table);
+      }
+
+      window.onload = init_table;
+    </script>
+  </head>
+
+  <body>
+    <button onclick="sort_desc()">Sort Desc</button>
+
+    <input id="searchInput" type="text" placeholder="Search by P-Id" />
+
+    <button onclick="search()">Search</button>
+
+    <button onclick="filterpats()">Filter Patients</button>
+  </body>
+</html>

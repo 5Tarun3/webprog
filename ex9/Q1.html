@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23BCE1032</title>
+    <style>
+      .result {
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="temp">Enter Temperature in °F:</label>
+    <input type="number" id="temp" />
+    <button onclick="classifyTemperature()">Submit</button>
+    <p id="output" class="result"></p>
+    <script>
+      function classifyTemperature() {
+      let temp = document.getElementById("temp").value;
+      let result;
+      if (temp < 32) {
+      result = "Freezing";
+      } else if (temp >= 32 && temp < 50) {
+      result = "Cold";
+      } else if (temp >= 50 && temp < 70) {
+      result = "Cool";
+      } else if (temp >= 70 && temp < 85) {
+      result = "Warm";
+      } else {
+      result = "Hot";
+      }
+      document.getElementById("output").innerText = "Temperature Classification: " + result;
+      }
+    </script>
+  </body>
+</html>
