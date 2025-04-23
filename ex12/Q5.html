@@ -1,92 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>23BCE1032</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        text-align: center;
+        font-size: 16px;
+        padding: 30px;
+        transition: z-index 0.3s ease;
+      }
+      .red {
+        background-color: red;
+        top: 50px;
+        left: 50px;
+        z-index: 1;
+      }
+      .green {
+        background-color: green;
+        top: 100px;
+        left: 100px;
+        z-index: 2;
+      }
+      .blue {
+        background-color: blue;
+        top: 150px;
+        left: 150px;
+        z-index: 3;
+      }
+    </style>
   </head>
-
-  <style>
-    .box {
-      width: 100px;
-      height: 100px;
-      position: absolute;
-      text-align: center;
-      font-size: 16px;
-      padding: 30px;
-    }
-
-    .red {
-      background-color: red;
-      top: 50px;
-      left: 50px;
-      z-index: 1;
-    }
-
-    .green {
-      background-color: green;
-      top: 100px;
-      left: 100px;
-      z-index: 2;
-    }
-
-    .blue {
-      background-color: blue;
-      top: 150px;
-      left: 150px;
-      z-index: 3;
-    }
-  </style>
-
   <body>
     <div class="box red" id="box1">Box 1</div>
-
     <div class="box green" id="box2">Box 2</div>
-
     <div class="box blue" id="box3">Box 3</div>
 
-    <input type="number" id="zIndexInput" placeholder="Enter z-index" />
-
-    <button onclick="changeZIndex()">Set z-index</button>
-
-    <p id="zIndexDisplay"></p>
-
     <script>
-      let hoveredBox = null;
-      let maxZIndex = 3; // initial max z-index based on existing boxes
-
+      let maxZIndex = 3;
       const boxes = document.querySelectorAll('.box');
+
       boxes.forEach(box => {
-        box.addEventListener('mouseover', () => {
-          hoveredBox = box;
+        box.addEventListener('mouseenter', () => {
           maxZIndex++;
-          hoveredBox.style.zIndex = maxZIndex;
-        });
-        box.addEventListener('mouseout', () => {
-          if (hoveredBox === box) {
-            hoveredBox = null;
-          }
+          box.style.zIndex = maxZIndex;
         });
       });
-
-      function changeZIndex() {
-        let zIndex = document.getElementById("zIndexInput").value;
-
-        if (hoveredBox) {
-          hoveredBox.style.zIndex = zIndex;
-
-          document.getElementById(
-            "zIndexDisplay"
-          ).textContent = `Updated ${hoveredBox.id} z-index to ${zIndex}`;
-        } else {
-          document.getElementById(
-            "zIndexDisplay"
-          ).textContent = "Please hover over a box to change its z-index.";
-        }
-      }
     </script>
   </body>
 </html>
