@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://5tarun3.github.io/webprog/",
+  "homepage": "https://5tarun3.github.io/webprog",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
