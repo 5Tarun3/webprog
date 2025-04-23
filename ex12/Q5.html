@@ -56,11 +56,14 @@
 
     <script>
       let hoveredBox = null;
+      let maxZIndex = 3; // initial max z-index based on existing boxes
 
       const boxes = document.querySelectorAll('.box');
       boxes.forEach(box => {
         box.addEventListener('mouseover', () => {
           hoveredBox = box;
+          maxZIndex++;
+          hoveredBox.style.zIndex = maxZIndex;
         });
         box.addEventListener('mouseout', () => {
           if (hoveredBox === box) {
